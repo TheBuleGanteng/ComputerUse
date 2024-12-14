@@ -1,0 +1,69 @@
+{% extends 'ComputerUse_users/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block login %}
+    <div class='text-start pt-2 pb-5 ps-1 pe-1 '>
+            
+        <!-- login form -->
+        <form action='{% url "ComputerUse_users:login" %}' method='post' name='cs50fp-users-login-form'>
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            
+            <!-- username -->
+            <div class='mb-3'>
+                {{ form.username }}
+            </div>
+            <div class='mb-3'>
+                {% if form.username.errors %}
+                    <div class='errors'>
+                        {% for error in form.username.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <!-- /username -->
+
+            <!-- password -->
+            <div class='mb-3'>
+                {{ form.password }}
+            </div>
+            <div class='mb-3'>
+                {% if form.password.errors %}
+                    <div class='errors'>
+                        {% for error in form.password.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <!-- /password -->
+
+            <button type='submit' class='btn btn-primary' id='submit_button'>Log In</button>
+        </form>
+        <!-- /login form -->
+
+
+        <!-- link to register -->
+        <a href='{% url "ComputerUse_users:register" %}' class="small mt-3 d-inline-block">Click here to register</a>
+        <!-- /link to register -->
+
+
+    </div>
+{% endblock %}
+
+{% block main %}
+
+
+    
+    <div class="container-fluid bg-slate-grey p-0 d-none d-md-block">
+        <div id="loginBackgroundImage" class="flex-grow-1 position-relative">
+            <img src="{% static 'ComputerUse_users/login_image.jpg' %}" alt="login image" class="w-100 h-100 object-fit-cover">
+        </div>
+    </div>
+
+{% endblock %}

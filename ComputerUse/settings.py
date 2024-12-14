@@ -11,14 +11,13 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from dotenv import load_dotenv
+import logging
 import os
 from pathlib import Path
-
 
 # Path to .env file
 dotenv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'gitignored', '.env')
 load_dotenv(dotenv_path)
-
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 PROJECT_ENV = os.getenv('ENVIRONMENT', 'development')
-
+PROJECT_NAME = 'ComputerUse'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +41,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Apps created
+    'ComputerUse_users',
+    'ComputerUse_ai',
+    # Default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
